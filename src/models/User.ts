@@ -50,9 +50,6 @@ const userSchema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
-/**
- * Password hash middleware.
- */
 userSchema.pre("save", function save(next) {
     const user = this;
     if (!user.isModified("password")) {
@@ -80,9 +77,6 @@ const comparePassword: comparePasswordFunction = function (candidatePassword, cb
 
 userSchema.methods.comparePassword = comparePassword;
 
-/**
- * Helper method for getting user's gravatar.
- */
 userSchema.methods.gravatar = function (size: number) {
     if (!size) {
         size = 200;

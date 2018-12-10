@@ -55,10 +55,14 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     secret: SESSION_SECRET,
-    store: new MongoStore({
-        url: mongoUrl,
-        autoReconnect: true
-    })
+    // store: new MongoStore({
+    //     url: mongoUrl,
+    //     autoReconnect: true
+    // })
+    cookie: {
+        secure: false, // Secure is recommended, However it requires an HTTPS enabled website (SSL Certificate)
+        maxAge: 10000 * 6 * 30 // 30 minutes
+    }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -109,15 +113,10 @@ app.post("/account/password", passportConfig.isAuthenticated, userController.pos
 app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userController.getOauthUnlink);
 
-/**
- * API examples routes.
- */
+
 app.get("/api", apiController.getApi);
 app.get("/api/facebook", passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.getFacebook);
 
-/**
- * OAuth authentication routes. (Sign in)
- */
 app.get("/auth/facebook", passport.authenticate("facebook", {scope: ["email", "public_profile"]}));
 app.get("/auth/facebook/callback", passport.authenticate("facebook", {failureRedirect: "/login"}), (req, res) => {
     res.redirect(req.session.returnTo || "/");
