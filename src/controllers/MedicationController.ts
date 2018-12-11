@@ -1,39 +1,52 @@
 import { Request, Response } from "express";
-import { Controller, Param, Body, Get, Post, Put, Delete } from "routing-controllers";
-import { injectable, inject } from "inversify";
+import * as express from "express";
+import {
+    interfaces,
+    controller,
+    httpGet,
+    httpPost,
+    httpDelete,
+    httpPut,
+    request,
+    queryParam,
+    response,
+    requestParam
+} from "inversify-express-utils";
+import { inject } from "inversify";
 import { MedicationService } from "../services/MedicationService";
-import { TYPES } from "../config/inversify/types";
+import TYPES from "../config/inversify/types";
 
-@Controller("/api/medication")
+@controller("/api/medication")
 export class MedicationController {
 
-    constructor(@inject(TYPES.MedicationService) private medicationService: MedicationService) {
+    // private medicationService: MedicationService;
 
+    public constructor(@inject(TYPES.MedicationService) private medicationService: MedicationService) {
     }
 
-    @Get()
+    @httpGet("")
     getAll(): any[] {
         return [];
     }
 
-    @Get("/:id")
-    async get(@Param("id") id: number) {
+    @httpGet("/:id")
+    async get(@requestParam("id") id: number) {
         const result = await this.medicationService.findById(id);
         return result;
     }
 
-    @Post("")
-    post(@Body() medication: any) {
+    @httpPost("")
+    post(@request() req: Request) {
         return "";
     }
 
-    @Put("/:id")
-    put(@Param("id") id: number, @Body() medication: any) {
+    @httpPut("/:id")
+    put(@requestParam("id") id: number, @request() req: Request) {
         return "";
     }
 
-    @Delete("/:id")
-    delete(@Param("id") id: number) {
+    @httpDelete("/:id")
+    delete(@requestParam("id") id: number) {
 
     }
 

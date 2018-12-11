@@ -1,30 +1,32 @@
 import express from "express";
+import { container } from "./config/inversify/ioc";
+import "./config/inversify/loader";
 import compression from "compression";  // compresses requests
 import session from "express-session";
 import bodyParser from "body-parser";
-import logger from "./util/logger";
-import lusca from "lusca";
 import dotenv from "dotenv";
 import mongo from "connect-mongo";
-import flash from "express-flash";
-import path from "path";
 import mongoose from "mongoose";
 import passport from "passport";
 import expressValidator from "express-validator";
 import bluebird from "bluebird";
 import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
-import { createExpressServer } from "routing-controllers";
-import "reflect-metadata";
+import { InversifyExpressServer } from "inversify-express-utils";
 
 const MongoStore = mongo(session);
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({path: ".env.example"});
 
-const app = createExpressServer({
-    cors: true,
-    controllers: [__dirname + "/controllers/*.ts"]
+const server = new InversifyExpressServer(container);
+server.setConfig((app) => {
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+    app.use(bodyParser.json());
 });
+
+const app = server.build();
 
 // Connect to MongoDB
 const mongoUrl = MONGODB_URI;
@@ -40,8 +42,8 @@ mongoose.connect(mongoUrl, {useMongoClient: true}).then(
 // Express configuration
 app.set("port", process.env.PORT || 3030);
 app.use(compression());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressValidator());
 app.use(session({
     resave: true,

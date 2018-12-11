@@ -4,4 +4,4 @@ const TYPES = {
     UserService: Symbol.for("UserService")
 };
 
-export { TYPES };
+export default TYPES;
