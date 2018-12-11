@@ -16,7 +16,8 @@ export class SupplementController {
 
     @Get("/:id")
     get(@Param("id") id: number) {
-        return "hello333";
+        const temp = "12321";
+        return "222";
     }
 
     @Post("")
