@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import * as medicationService from "../services/medicationservice";
+import * as medicationService from "MedicationService.ts";
 import { Controller, Param, Body, Get, Post, Put, Delete } from "routing-controllers";
 
 @Controller("/api/supplement")
@@ -17,7 +17,7 @@ export class SupplementController {
     @Get("/:id")
     get(@Param("id") id: number) {
         const temp = "12321";
-        return "222";
+        return "333";
     }
 
     @Post("")
