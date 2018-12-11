@@ -11,6 +11,10 @@ class MedicationService implements IMedicationService {
 
     }
 
+    public findById(id: number): Promise<any> {
+        return Medication.findById(id).exec();
+    }
+
     public findByName(name: string): Promise<any> {
         return Medication.find()
             .where("name").equals(name)

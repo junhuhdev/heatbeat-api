@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
-import * as medicationService from "MedicationService.ts";
 import { Controller, Param, Body, Get, Post, Put, Delete } from "routing-controllers";
+import { injectable, inject } from "inversify";
+import { MedicationService } from "../services/MedicationService";
+import { TYPES } from "../config/inversify/types";
 
 @Controller("/api/medication")
 export class MedicationController {
 
-    constructor() {
+    constructor(@inject(TYPES.MedicationService) private medicationService: MedicationService) {
 
     }
 
@@ -15,8 +17,9 @@ export class MedicationController {
     }
 
     @Get("/:id")
-    get(@Param("id") id: number) {
-        return "hell22222o";
+    async get(@Param("id") id: number) {
+        const result = await this.medicationService.findById(id);
+        return result;
     }
 
     @Post("")
