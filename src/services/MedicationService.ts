@@ -11,8 +11,6 @@ interface IMedicationService {
 @provide(TYPES.MedicationService)
 export class MedicationService implements IMedicationService {
     constructor() {
-        const container = new Container();
-        container.load(buildProviderModule());
     }
 
     public findById(id: number): Promise<any> {
