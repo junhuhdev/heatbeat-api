@@ -16,7 +16,7 @@ export class MedicationController {
 
     @Get("/:id")
     get(@Param("id") id: number) {
-        return "hell22o";
+        return "hell22222o";
     }
 
     @Post("")

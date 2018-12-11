@@ -27,7 +27,7 @@ dotenv.config({path: ".env.example"});
 // Create Express server
 const app = createExpressServer({
     cors: true,
-    controllers: [MedicationController]
+    controllers: [__dirname + "/controllers/*.ts"]
 });
 
 // Connect to MongoDB
