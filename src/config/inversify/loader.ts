@@ -1,3 +1,3 @@
-import { MedicationService } from "../../services/MedicationService";
+// import { MedicationService } from "../../services/MedicationService";
 
 import "../../controllers/MedicationController";

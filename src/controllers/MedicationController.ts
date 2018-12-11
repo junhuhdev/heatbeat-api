@@ -10,18 +10,19 @@ import {
     request,
     queryParam,
     response,
-    requestParam
+    requestParam, BaseHttpController
 } from "inversify-express-utils";
 import { inject } from "inversify";
-import { MedicationService } from "../services/MedicationService";
+import { MedicationService } from "../services";
 import TYPES from "../config/inversify/types";
 
 @controller("/api/medication")
-export class MedicationController {
+export class MedicationController extends BaseHttpController {
 
     // private medicationService: MedicationService;
 
     public constructor(@inject(TYPES.MedicationService) private medicationService: MedicationService) {
+        super();
     }
 
     @httpGet("")
