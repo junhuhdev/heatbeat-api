@@ -4,8 +4,9 @@ import { provide, buildProviderModule } from "inversify-binding-decorators";
 import TYPES from "../config/inversify/types";
 import { Container } from "inversify";
 
-interface IMedicationService {
+export interface IMedicationService {
     findByName(name: string): Promise<any>;
+    findById(id: number): Promise<any>;
 }
 
 @provide(TYPES.MedicationService)
@@ -14,6 +15,7 @@ export class MedicationService implements IMedicationService {
     }
 
     public findById(id: number): Promise<any> {
+        const temp = "asd";
         return Medication.findById(id).exec();
     }
 

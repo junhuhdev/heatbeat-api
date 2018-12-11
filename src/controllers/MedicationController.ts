@@ -15,13 +15,14 @@ import {
 import { inject } from "inversify";
 import { MedicationService } from "../services";
 import TYPES from "../config/inversify/types";
+import { IMedicationService } from "../services/MedicationService";
 
 @controller("/api/medication")
 export class MedicationController extends BaseHttpController {
 
     // private medicationService: MedicationService;
 
-    public constructor(@inject(TYPES.MedicationService) private medicationService: MedicationService) {
+    public constructor(@inject(TYPES.MedicationService) private medicationService: IMedicationService) {
         super();
     }
 

@@ -7,6 +7,5 @@ import TYPES from "./types";
 const container = new Container();
 
 container.bind<MedicationService>(TYPES.MedicationService).to(MedicationService);
-// container.load(buildProviderModule());
 
 export { container, autoProvide, inject };
