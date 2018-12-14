@@ -1,1 +1,1 @@
-export { MedicationService } from "./MedicationService";
+export { MedicationService, IMedicationService } from "./MedicationService";

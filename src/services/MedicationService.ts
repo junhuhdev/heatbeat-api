@@ -1,11 +1,11 @@
 import { default as Medication } from "../models/Medication";
 // import { injectable, inject } from "inversify";
-import { provide, buildProviderModule } from "inversify-binding-decorators";
+import { provide } from "inversify-binding-decorators";
 import TYPES from "../config/inversify/types";
-import { Container } from "inversify";
 
 export interface IMedicationService {
     findByName(name: string): Promise<any>;
+
     findById(id: number): Promise<any>;
 }
 
