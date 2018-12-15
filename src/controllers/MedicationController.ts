@@ -1,14 +1,11 @@
-import { Request, Response } from "express";
+import { Request } from "express";
 import {
-    interfaces,
     controller,
     httpGet,
     httpPost,
     httpDelete,
     httpPut,
     request,
-    queryParam,
-    response,
     requestParam, BaseHttpController
 } from "inversify-express-utils";
 import { inject } from "inversify";

@@ -1,7 +1,9 @@
 import { Db, ObjectID } from "mongodb";
 import { MongoDBConnection } from "./Connection";
+import { provide } from "inversify-binding-decorators";
+import TYPES from "../../config/inversify/Types";
 
-
+@provide(TYPES.MongoDBClient)
 export class MongoDBClient {
     public db: Db;
 
