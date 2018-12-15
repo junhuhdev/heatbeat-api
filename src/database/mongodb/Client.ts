@@ -1,5 +1,5 @@
 import { Db, ObjectID } from "mongodb";
-import { MongoDBConnection } from "./connection";
+import { MongoDBConnection } from "./Connection";
 
 
 export class MongoDBClient {

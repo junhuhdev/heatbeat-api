@@ -1,6 +1,6 @@
 import express from "express";
 import { container } from "./config/inversify/ioc";
-import "./config/inversify/loader";
+import "./config/inversify/Loader";
 import compression from "compression";  // compresses requests
 import session from "express-session";
 import bodyParser from "body-parser";

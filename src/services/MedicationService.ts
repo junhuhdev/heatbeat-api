@@ -1,14 +1,14 @@
-import { default as Medication } from "../models/Medication";
-// import { injectable, inject } from "inversify";
 import { provide } from "inversify-binding-decorators";
-import TYPES from "../config/inversify/types";
-import { MongoDBClient } from "../database/mongodb/client";
 import { inject } from "inversify";
+import { Medication } from "../models/Medication";
+import { MedicationsCollection } from "../database/mongodb/schema/Collections";
+import TYPES from "../config/inversify/Types";
+import { MongoDBClient } from "../database/mongodb/Client";
 
 export interface IMedicationService {
-    findByName(name: string): Promise<any>;
+    findById(id: string): Promise<Medication>;
 
-    findById(id: string): Promise<any>;
+    findAllByManufacturer(manufacturer: string): Promise<Medication[]>;
 }
 
 @provide(TYPES.MedicationService)
@@ -19,20 +19,20 @@ export class MedicationService implements IMedicationService {
         this.mongoClient = mongoClient;
     }
 
-    public findById(id: string): Promise<Medication> {
-        // const temp = "asd";
-        // return Medication.findById(id).exec();
-
-        return new Promise<Medication>((resolve, reject) => {
-            this.mongoClient.f
+    public findAllByManufacturer(manufacturer: string): Promise<Medication[]> {
+        return new Promise<Medication[]>((resolve, reject) => {
+            this.mongoClient.find(MedicationsCollection, {manufacturer: manufacturer}, (error, data: Medication[]) => {
+                resolve(data);
+            });
         });
-
     }
 
-    public findByName(name: string): Promise<any> {
-        return Medication.find()
-            .where("name").equals(name)
-            .exec();
+    public findById(id: string): Promise<Medication> {
+        return new Promise<Medication>((resolve, reject) => {
+            this.mongoClient.findOneById(MedicationsCollection, id, (error: any, data: any) => {
+                resolve(data);
+            });
+        });
     }
 
 }

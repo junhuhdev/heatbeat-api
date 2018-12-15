@@ -1,10 +1,19 @@
-import mongoose from "mongoose";
+import { provide } from "inversify-binding-decorators";
 
-const MedicationSchema = new mongoose.Schema({
-    name: String,
-    dose: String,
-    manufacturer: String
-});
+export class Medication {
+    private _id: string;
+    private name: string;
+    private dose: string;
+    private manufacturer: string;
 
-const Medication = mongoose.model("Medication", MedicationSchema);
-export default Medication;
+    constructor(_id: string,
+                name: string,
+                dose: string,
+                manufacturer: string) {
+        this._id = _id;
+        this.name = name;
+        this.dose = dose;
+        this.manufacturer = manufacturer;
+    }
+
+}

@@ -13,9 +13,8 @@ import {
     requestParam, BaseHttpController
 } from "inversify-express-utils";
 import { inject } from "inversify";
-import { MedicationService } from "../services";
-import TYPES from "../config/inversify/types";
-import { IMedicationService } from "../services/MedicationService";
+import { IMedicationService } from "../services";
+import TYPES from "../config/inversify/Types";
 
 @controller("/api/medication")
 export class MedicationController extends BaseHttpController {
@@ -32,9 +31,9 @@ export class MedicationController extends BaseHttpController {
     }
 
     @httpGet("/:id")
-    async get(@requestParam("id") id: number) {
+    async get(@requestParam("id") id: string) {
         const result = await this.medicationService.findById(id);
-        return result;
+        return this.ok(result);
     }
 
     @httpPost("")

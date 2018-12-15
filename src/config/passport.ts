@@ -4,7 +4,7 @@ import passportLocal from "passport-local";
 import passportFacebook from "passport-facebook";
 import _ from "lodash";
 
-// import { User, UserType } from '../models/User';
+// import { User, UserType } from '../schema/User';
 import { default as User } from "../models/User";
 import { Request, Response, NextFunction } from "express";
 
