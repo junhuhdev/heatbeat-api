@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import * as express from "express";
 import {
     interfaces,
     controller,
@@ -24,29 +23,33 @@ export class MedicationController extends BaseHttpController {
     }
 
     @httpGet("")
-    getAll(): any[] {
-        return [];
+    async getAll() {
+        const result = await this.medicationService.findAll();
+        return this.ok(result);
     }
 
     @httpGet("/:id")
-    async get(@requestParam("id") id: string) {
+    async getById(@requestParam("id") id: string) {
         const result = await this.medicationService.findById(id);
         return this.ok(result);
     }
 
     @httpPost("")
-    post(@request() req: Request) {
-        return "";
+    async create(@request() request: Request) {
+        const result = await this.medicationService.create(request.body);
+        return this.ok(result);
     }
 
     @httpPut("/:id")
-    put(@requestParam("id") id: number, @request() req: Request) {
-        return "";
+    async update(@requestParam("id") id: string, @request() request: Request) {
+        const result = await this.medicationService.update(id, request.body);
+        return this.ok(result);
     }
 
     @httpDelete("/:id")
-    delete(@requestParam("id") id: number) {
-
+    async delete(@requestParam("id") id: string) {
+        const result = await this.medicationService.delete(id);
+        return this.ok(result);
     }
 
 }
