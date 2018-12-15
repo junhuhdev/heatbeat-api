@@ -6,8 +6,9 @@ import TYPES from "../config/inversify/Types";
 import { MongoDBClient } from "../database/mongodb/Client";
 
 export interface IMedicationService {
-    findById(id: string): Promise<Medication>;
+    findAll(): Promise<Medication[]>;
     findAllByManufacturer(manufacturer: string): Promise<Medication[]>;
+    findById(id: string): Promise<Medication>;
     create(medication: Medication): Promise<Medication>;
     update(id: string, medication: Medication): Promise<Medication>;
     delete(id: string): Promise<any>;
@@ -19,6 +20,14 @@ export class MedicationService implements IMedicationService {
 
     constructor(@inject(TYPES.MongoDBClient) mongoClient: MongoDBClient) {
         this.mongoClient = mongoClient;
+    }
+
+    public findAll(): Promise<Medication[]> {
+        return new Promise<Medication[]>((resolve, reject) => {
+            this.mongoClient.find(MedicationsCollection, {}, (error, data: Medication[]) => {
+                resolve(data);
+            });
+        });
     }
 
     public findAllByManufacturer(manufacturer: string): Promise<Medication[]> {
@@ -48,9 +57,7 @@ export class MedicationService implements IMedicationService {
     public update(id: string, medication: Medication): Promise<Medication> {
         return new Promise<Medication>((resolve, reject) => {
             this.mongoClient.update(MedicationsCollection, id, medication, (error, data: Medication) => {
-                this.mongoClient.update(MedicationsCollection, id, medication, (error, data: Medication) => {
-                    resolve(data);
-                });
+                resolve(data);
             });
         });
     }

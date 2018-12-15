@@ -19,8 +19,6 @@ import TYPES from "../config/inversify/Types";
 @controller("/api/medication")
 export class MedicationController extends BaseHttpController {
 
-    // private medicationService: MedicationService;
-
     public constructor(@inject(TYPES.MedicationService) private medicationService: IMedicationService) {
         super();
     }
@@ -50,7 +48,6 @@ export class MedicationController extends BaseHttpController {
     delete(@requestParam("id") id: number) {
 
     }
-
 
 }
 
