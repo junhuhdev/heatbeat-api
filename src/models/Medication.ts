@@ -1,5 +1,3 @@
-import { provide } from "inversify-binding-decorators";
-
 export class Medication {
     private _id: string;
     private name: string;
