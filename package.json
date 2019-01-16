@@ -1,10 +1,10 @@
 {
-  "name": "express-typescript-starter",
+  "name": "heartbeat-api",
   "version": "1.0.0",
-  "description": "A starting point for Node.js express apps with TypeScript",
+  "description": "Platform for health diagnosis",
   "repository": {
     "type": "git",
-    "url": "https://github.com/junhuhdev/heatbeat-api"
+    "url": "https://github.com/junhuhdev/heartbeat-api"
   },
   "author": "Jun Huh",
   "license": "MIT",
