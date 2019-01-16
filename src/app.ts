@@ -46,7 +46,6 @@ const resolvers = {
 const apolloServer = new ApolloServer({typeDefs, resolvers});
 apolloServer.applyMiddleware({app});
 
-
 // Connect to MongoDB
 const mongoUrl = MONGODB_URI;
 (<any>mongoose).Promise = bluebird;
