@@ -62,6 +62,7 @@
     "reflect-metadata": "^0.1.12",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
+    "ts-node": "^5.0.1",
     "routing-controllers": "^0.7.7",
     "winston": "^2.4.0"
   },
