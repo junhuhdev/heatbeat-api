@@ -7,12 +7,10 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongo from "connect-mongo";
 import mongoose from "mongoose";
-import passport from "passport";
 import expressValidator from "express-validator";
 import bluebird from "bluebird";
 import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
 import { InversifyExpressServer } from "inversify-express-utils";
-import { ApolloServer, gql } from "apollo-server-express";
 
 const MongoStore = mongo(session);
 
@@ -28,23 +26,6 @@ server.setConfig((app) => {
 });
 
 const app = server.build();
-
-// Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-// Provide resolver functions for your schema fields
-const resolvers = {
-    Query: {
-        hello: () => "Hello world!",
-    },
-};
-
-const apolloServer = new ApolloServer({typeDefs, resolvers});
-apolloServer.applyMiddleware({app});
 
 // Connect to MongoDB
 const mongoUrl = MONGODB_URI;
@@ -75,7 +56,5 @@ app.use(session({
         maxAge: 10000 * 6 * 30 // 30 minutes
     }
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 export default app;
