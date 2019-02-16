@@ -24,6 +24,11 @@ export class SupplementController {
         return "";
     }
 
+    @Post("")
+    put(@Body() supplement: any) {
+        return "";
+    }
+
     @Delete("/:id")
     delete(@Param("id") id: number) {
 
