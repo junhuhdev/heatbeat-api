@@ -26,7 +26,7 @@ export class SupplementController {
 
     @Put("/:id")
     put(@Param("id") id: number, @Body() supplement: any) {
-        return "";
+        return "2";
     }
 
     @Put("/:id")
