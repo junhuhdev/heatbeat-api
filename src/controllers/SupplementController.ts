@@ -24,21 +24,6 @@ export class SupplementController {
         return "";
     }
 
-    @Put("/:id")
-    put(@Param("id") id: number, @Body() supplement: any) {
-        return "";
-    }
-
-    @Put("/:id")
-    putTwice(@Param("id") id: number, @Body() sup2plement: any) {
-        return "";
-    }
-
-    @Put("/:id")
-    putOnce(@Param("id") id: number, @Body() supp123lement: any) {
-        return "";
-    }
-
     @Delete("/:id")
     delete(@Param("id") id: number) {
 
