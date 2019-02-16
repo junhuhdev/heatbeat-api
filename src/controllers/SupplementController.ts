@@ -35,11 +35,6 @@ export class SupplementController {
     }
 
     @Put("/:id")
-    putTwice(@Param("id") id: number, @Body() supplement: any) {
-        return "";
-    }
-
-    @Put("/:id")
     putOnce(@Param("id") id: number, @Body() supplement: any) {
         return "";
     }
