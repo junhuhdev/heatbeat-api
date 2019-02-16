@@ -34,6 +34,13 @@ export class SupplementController {
         return "";
     }
 
+<<<<<<< HEAD
+=======
+    @Put("/:id")
+    putOnce(@Param("id") id: number, @Body() supp123lement: any) {
+        return "";
+    }
+
     @Put("/:id")
     putTwice(@Param("id") id: number, @Body() supplement: any) {
         return "";
@@ -44,6 +51,7 @@ export class SupplementController {
         return "";
     }
 
+>>>>>>> 4a578b6... feature/supplement-fix
     @Delete("/:id")
     delete(@Param("id") id: number) {
 
