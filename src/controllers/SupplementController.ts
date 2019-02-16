@@ -29,6 +29,11 @@ export class SupplementController {
         return "";
     }
 
+    @Put("/:id")
+    p2ut(@Param("id") id: number, @Body() supplement: any) {
+        return "";
+    }
+
     @Delete("/:id")
     delete(@Param("id") id: number) {
 
