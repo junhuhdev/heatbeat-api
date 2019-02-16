@@ -31,7 +31,7 @@ export class SupplementController {
 
     @Put("/:id")
     putTwice(@Param("id") id: number, @Body() sup2plement: any) {
-        return "";
+        return "2";
     }
 
     @Put("/:id")
