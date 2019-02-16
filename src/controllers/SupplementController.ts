@@ -34,6 +34,11 @@ export class SupplementController {
         return "";
     }
 
+    @Put("/:id")
+    p3ut(@Param("id") id: number, @Body() supplement: any) {
+        return "";
+    }
+
     @Delete("/:id")
     delete(@Param("id") id: number) {
 
